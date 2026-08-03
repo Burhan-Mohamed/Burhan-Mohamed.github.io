@@ -75,7 +75,14 @@
     .nav-pills {
       display: flex;
       gap: 0;
-      list-style: none
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none
+    }
+
+    .nav-pills::-webkit-scrollbar {
+      display: none
     }
 
     .nav-pills a {
@@ -111,8 +118,7 @@
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 2px;
-      grid-template-rows:
-        repeat(5, 100px) repeat(4, 92px) repeat(5, 90px) repeat(5, 90px) repeat(4, 88px) 120px;
+      grid-auto-rows: minmax(92px, auto);
     }
 
     .card {
@@ -153,42 +159,42 @@
 
     .c-exp {
       grid-column: 1/8;
-      grid-row: 10/15
+      grid-row: 10/19
     }
 
     .c-skills {
       grid-column: 8/13;
-      grid-row: 10/15
-    }
-
-    .c-proj1 {
-      grid-column: 1/7;
-      grid-row: 15/20
-    }
-
-    .c-proj2 {
-      grid-column: 7/13;
-      grid-row: 15/20
-    }
-
-    .c-edu {
-      grid-column: 1/6;
-      grid-row: 20/24
-    }
-
-    .c-ach {
-      grid-column: 6/10;
-      grid-row: 20/24
+      grid-row: 10/16
     }
 
     .c-cv {
-      grid-column: 10/13;
-      grid-row: 20/24
+      grid-column: 8/13;
+      grid-row: 16/19
+    }
+
+    .c-sites {
+      grid-column: 1/8;
+      grid-row: 19/24
+    }
+
+    .c-proj1 {
+      grid-column: 8/13;
+      grid-row: 19/24
+    }
+
+    .c-edu {
+      grid-column: 1/7;
+      grid-row: 24/28
+    }
+
+    .c-ach {
+      grid-column: 7/13;
+      grid-row: 24/28
     }
 
     .c-bar {
       grid-column: 1/13;
-      grid-row: 24/25
+      grid-row: 28/29
     }
 
     /* HERO */
@@ -327,6 +333,12 @@
       background: var(--card)
     }
 
+    .exp-entry+.exp-entry {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--brd)
+    }
+
     .exp-top {
       display: flex;
       justify-content: space-between;
@@ -424,9 +436,58 @@
       transform: scale(1.03)
     }
 
+    /* LIVE SITES */
+    .c-sites {
+      background: var(--card)
+    }
+
+    .c-sites .proj-name {
+      margin-bottom: 1rem
+    }
+
+    .sites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      flex: 1
+    }
+
+    .site-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      padding: .7rem .9rem;
+      border: 1px solid var(--brd);
+      text-decoration: none;
+      transition: all .2s
+    }
+
+    .site-link:hover {
+      border-color: var(--grn);
+      background: var(--grn-lt)
+    }
+
+    .site-name {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--t1)
+    }
+
+    .site-url {
+      font-size: .64rem;
+      color: var(--t3);
+      margin-top: .1rem
+    }
+
+    .site-arrow {
+      font-size: .8rem;
+      color: var(--grn);
+      flex-shrink: 0
+    }
+
     /* PROJECTS */
-    .c-proj1,
-    .c-proj2 {
+    .c-proj1 {
       padding: 0;
       display: flex;
       flex-direction: column;
@@ -434,7 +495,7 @@
     }
 
     .proj-img {
-      height: 130px;
+      height: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -443,7 +504,7 @@
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
-      background: #1a2a1e
+      background: #0d1f13
     }
 
     .proj-img img {
@@ -454,27 +515,6 @@
       object-fit: cover;
       object-position: top;
       display: block
-    }
-
-    .proj-img-fallback {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: .4rem;
-      position: relative;
-      z-index: 1
-    }
-
-    .proj-ico {
-      font-size: 2rem
-    }
-
-    .proj-img-lbl {
-      font-size: .6rem;
-      color: rgba(255, 255, 255, .3);
-      letter-spacing: .1em;
-      text-transform: uppercase
     }
 
     .proj-body {
@@ -630,9 +670,8 @@
 
     .ach-item {
       display: flex;
-      align-items: flex-start;
-      gap: .7rem;
-      padding: .75rem .9rem;
+      flex-direction: column;
+      padding: .85rem 1rem;
       background: var(--card);
       border: 1px solid var(--brd);
       margin-bottom: 2px;
@@ -643,22 +682,16 @@
       border-color: var(--grn-brd)
     }
 
-    .ach-ico {
-      width: 32px;
-      height: 32px;
-      background: var(--grn-lt);
-      border: 1px solid var(--grn-brd);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .88rem;
-      flex-shrink: 0
-    }
-
     .ach-name {
       font-size: .8rem;
       font-weight: 600;
       color: var(--t1)
+    }
+
+    .ach-sub {
+      font-size: .7rem;
+      color: var(--t2);
+      margin-top: .12rem
     }
 
     /* CV */
@@ -681,7 +714,8 @@
       flex-direction: column;
       gap: .35rem;
       text-decoration: none;
-      transition: border-color .2s
+      transition: border-color .2s;
+      min-height: 70px
     }
 
     .cv-view:hover {
@@ -792,6 +826,26 @@
       display: block
     }
 
+    a:focus-visible,
+    .sk-pill:focus-visible {
+      outline: 2px solid var(--grn);
+      outline-offset: 2px
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+    }
+
     footer {
       text-align: center;
       padding: 1.75rem;
@@ -819,6 +873,10 @@
       .clink {
         min-width: auto
       }
+
+      .c-photo {
+        min-height: 380px
+      }
     }
 
     @media(max-width:560px) {
@@ -830,6 +888,10 @@
         padding: .9rem 1rem
       }
 
+      .nav-pills {
+        overflow-x: auto
+      }
+
       .nav-pills a {
         padding: .3rem .5rem;
         font-size: .66rem
@@ -837,6 +899,10 @@
 
       .hero-name {
         font-size: 2.2rem
+      }
+
+      .sites-grid {
+        grid-template-columns: 1fr
       }
     }
   </style>
@@ -866,11 +932,11 @@
       <div class="card c-hero" id="hero">
         <div class="ci">
           <h1 class="hero-name">Hello,<br />I'm Burhan<br /><em>Mohamed.</em></h1>
-          <p class="hero-desc">I am a highly motivated and dedicated Computer and Information Science Honours graduate,
-            with distinction. I am passionate about my field of study and its applications in solving <strong>real-world
-              problems</strong>, constantly expanding my skills in new areas of technology. With hands-on experience in
-            full-stack development, I am excited to contribute to impactful software solutions, while eager to
-            continuously learn and collaborate.</p>
+          <p class="hero-desc">I am a highly motivated and dedicated Computer and Information Science Honours
+            graduate, with distinction. I am passionate about my field of study and its applications in solving
+            <strong>real-world problems</strong>, constantly expanding my skills in new areas of technology. With
+            hands-on experience in full-stack development and software engineering, I am excited to contribute to
+            impactful software solutions, while eager to continuously learn and collaborate.</p>
         </div>
       </div>
 
@@ -887,11 +953,13 @@
             <div class="about-text">
               <p>I am a dedicated individual who recently completed my <strong>Honours degree in Computer and
                   Information Science, with distinction</strong>. With a strong technical foundation in full-stack
-                development, I have hands-on experience across both front-end and back-end development.</p>
+                development and software engineering, I have hands-on experience across both front-end and back-end development.</p>
+              <p>At <strong>Al Capone</strong>, I manage the Shopify platform behind eight retail websites, customising
+                them with Liquid, HTML and CSS. I maintain the internal employee management system built on Next.js,
+                React and Supabase, and I built Python scripts that automatically extract financial data from the POS.</p>
               <p>At <strong>J2 Software</strong>, I worked on a real-time security monitoring and alert management
-                system,
-                designing the dashboard, alert prioritisation and multi-factor authentication. This sharpened my
-                skills in GoLang, Angular and JavaScript.</p>
+                system, designing the dashboard, alert prioritisation and multi-factor authentication. This sharpened
+                my skills in GoLang, Angular and JavaScript.</p>
               <p>I also completed <strong>SQL and business analyst training at Signature Business Solutions</strong>,
                 deepening my understanding of how data generates meaningful insights. I don't only want to build
                 systems, I want to help organisations make better decisions.</p>
@@ -915,24 +983,50 @@
       <div class="card c-exp" id="experience">
         <div class="ci">
           <div class="slabel">Experience</div>
-          <div class="exp-top">
-            <div>
-              <div class="exp-role">Full-Stack Developer</div>
-              <div class="exp-co">J2 Software</div>
+
+          <div class="exp-entry">
+            <div class="exp-top">
+              <div>
+                <div class="exp-role">Software Engineer</div>
+                <div class="exp-co">Al Capone</div>
+              </div>
+              <div class="exp-date">May 2026 – Present</div>
             </div>
-            <div class="exp-date">Jan 2024 – Dec 2024</div>
+            <ul class="bullets">
+              <li>Manage and maintain the Shopify CMS platform for eight of the company's retail websites, handling
+                content updates and daily ecommerce functionality.</li>
+              <li>Customise and enhance website designs using Liquid, HTML and CSS to improve user experience, while
+                collaborating on marketing designs to ensure consistent branding and design language.</li>
+              <li>Create and generate custom reports covering sales, inventory and customer retention using the Shopify
+                GraphQL API and ShopifyQL, providing insights to support business decision-making.</li>
+              <li>Maintain and handle an internal employee management system built with Next.js, React and Supabase,
+                enabling store managers to coordinate staff operations across multiple stores and branches.</li>
+              <li>Built Python scripts for accounting, integrating with the POS Retail Pro API to automate the
+                processing of financial data for reporting and reconciliation.</li>
+            </ul>
           </div>
-          <div class="exp-proj">↳ Real-Time Security Monitoring & Alert Management System</div>
-          <ul class="bullets">
-            <li>Led both frontend and backend development, using Angular for the user interface and Golang for the
-              backend.</li>
-            <li>Developed an interactive dashboard to visualise security alerts, incorporating features such as
-              filtering, sorting and archiving.</li>
-            <li>Designed core functionalities, including PDF report generation, alert prioritisation and multifactor
-              authentication.</li>
-            <li>Implemented accessibility options, such as dark mode, language localisation and adjustable text sizes.
-            </li>
-          </ul>
+
+          <div class="exp-entry">
+            <div class="exp-top">
+              <div>
+                <div class="exp-role">Full-Stack Developer</div>
+                <div class="exp-co">J2 Software</div>
+              </div>
+              <div class="exp-date">Jan 2024 – Dec 2024</div>
+            </div>
+            <div class="exp-proj">Real-Time Security Monitoring &amp; Alert Management System</div>
+            <ul class="bullets">
+              <li>Led both frontend and backend development, using Angular for the user interface and Golang for the
+                backend.</li>
+              <li>Developed an interactive dashboard to visualise security alerts, incorporating features such as
+                filtering, sorting and archiving.</li>
+              <li>Designed core functionalities, including PDF report generation, alert prioritisation and multifactor
+                authentication.</li>
+              <li>Implemented accessibility options, such as dark mode, language localisation and adjustable text sizes.
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
 
@@ -943,34 +1037,127 @@
           <div class="sk-pills">
             <span class="sk-pill">Java</span>
             <span class="sk-pill">C#</span>
+            <span class="sk-pill">Python</span>
             <span class="sk-pill">GoLang</span>
             <span class="sk-pill">TypeScript</span>
             <span class="sk-pill">JavaScript</span>
             <span class="sk-pill">PHP</span>
             <span class="sk-pill">PL/SQL</span>
-            <span class="sk-pill">Angular</span>
+            <span class="sk-pill">Next.js</span>
             <span class="sk-pill">React</span>
-            <span class="sk-pill">ASP.NET</span>
+            <span class="sk-pill">Angular</span>
             <span class="sk-pill">Node.js</span>
+            <span class="sk-pill">ASP.NET</span>
+            <span class="sk-pill">Shopify</span>
+            <span class="sk-pill">Supabase</span>
             <span class="sk-pill">MySQL</span>
             <span class="sk-pill">MongoDB</span>
             <span class="sk-pill">Oracle DB</span>
+            <span class="sk-pill">POS</span>
+            <span class="sk-pill">API</span>
+            <span class="sk-pill">Web Development</span>
             <span class="sk-pill">GitHub</span>
             <span class="sk-pill">CI/CD</span>
-            <span class="sk-pill">Web Development</span>
             <span class="sk-pill">Windows PowerShell</span>
           </div>
         </div>
       </div>
 
-      <!-- PROJECT 1 -->
-      <div class="card c-proj1" id="projects">
-        <div class="proj-img" style="background:#0d1f13">
+      <!-- CV -->
+      <div class="card c-cv" id="resume">
+        <div class="ci">
+          <div class="slabel">Resume</div>
+          <a href="_documents/BurhanMohamed_CV.pdf" target="_blank" class="cv-view">
+            <span>📄</span>
+            <small>View CV</small>
+          </a>
+          <a href="_documents/BurhanMohamed_CV.pdf" download="BurhanMohamed_CV.pdf" class="cv-dl">Download CV</a>
+        </div>
+      </div>
+
+      <!-- LIVE SITES -->
+      <div class="card c-sites" id="projects">
+        <div class="ci">
+          <div class="proj-slabel">Project</div>
+          <div class="proj-name">Al Capone Websites</div>
+          <div class="sites-grid">
+
+            <a href="https://alcaponepremium.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">Al Capone Premium</div>
+                <div class="site-url">alcaponepremium.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+            <a href="https://maisondeux.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">Maison Deux</div>
+                <div class="site-url">maisondeux.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+            <a href="https://colt45byalcapone.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">Colt 45</div>
+                <div class="site-url">colt45byalcapone.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+            <a href="https://menbur.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">Menbur</div>
+                <div class="site-url">menbur.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+            <a href="https://palazzopitti.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">Palazzo Pitti</div>
+                <div class="site-url">palazzopitti.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+            <a href="https://69belmont.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">69belmont</div>
+                <div class="site-url">69belmont.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+            <a href="https://upscaleza.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">Upscale</div>
+                <div class="site-url">upscaleza.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+            <a href="https://truereligionsa.co.za/" target="_blank" rel="noopener" class="site-link">
+              <div>
+                <div class="site-name">True Religion SA</div>
+                <div class="site-url">truereligionsa.co.za</div>
+              </div>
+              <div class="site-arrow">↗</div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT -->
+      <div class="card c-proj1">
+        <div class="proj-img">
           <img src="_images/j2.jpeg" alt="Security Monitoring System" onerror="this.style.display='none'" />
         </div>
         <div class="proj-body">
           <div class="proj-slabel">Project</div>
-          <div class="proj-name">Security Monitoring & Alert System</div>
+          <div class="proj-name">Security Monitoring &amp; Alert System</div>
           <p class="proj-desc">A real-time security alert management platform built at J2 Software. Features an
             interactive dashboard with filtering and archiving, PDF report generation, multi-factor authentication, and
             full accessibility support including dark mode and localisation.</p>
@@ -985,41 +1172,19 @@
         </div>
       </div>
 
-      <!-- PROJECT 2 -->
-      <div class="card c-proj2">
-        <div class="proj-img" style="background:#0e0d20">
-          <img src="_images/clothing.jpeg" alt="Clothing E-Commerce Store" onerror="this.style.display='none'" />
-        </div>
-        <div class="proj-body">
-          <div class="proj-slabel">Project</div>
-          <div class="proj-name">Clothing Store.</div>
-          <p class="proj-desc">A fully functional e-commerce clothing store built in third year. Includes product
-            browsing, cart management and a clean responsive UI designed for a smooth shopping experience from first
-            browse to checkout.</p>
-          <div class="proj-stack">
-            <span class="proj-tech">React</span><span class="proj-tech">TypeScript</span><span
-              class="proj-tech">JavaScript</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/Burhan-Mohamed/clothing-store.git" target="_blank" class="plink plink-gh">↗ GitHub</a>
-            <a href="https://clothing-store-ashen-seven.vercel.app/" target="_blank" class="plink plink-demo">↗ Demo</a>
-          </div>
-        </div>
-      </div>
-
       <!-- EDUCATION -->
       <div class="card c-edu" id="education">
         <div class="ci">
           <div class="slabel">Education</div>
           <div class="edu-item">
             <div class="edu-yr">2025</div>
-            <div class="edu-deg">BSc (Honours) Computer & Information Science</div>
+            <div class="edu-deg">BSc (Honours) Computer &amp; Information Science</div>
             <div class="edu-school">IIE MSA</div>
             <div class="edu-badge">With Distinction</div>
           </div>
           <div class="edu-item">
             <div class="edu-yr">2022 – 2024</div>
-            <div class="edu-deg">BSc Computer & Information Science</div>
+            <div class="edu-deg">BSc Computer &amp; Information Science</div>
             <div class="edu-school">IIE MSA</div>
             <div class="edu-badge">With Distinction</div>
           </div>
@@ -1037,38 +1202,29 @@
         <div class="ci">
           <div class="slabel">Achievements</div>
           <div class="ach-item">
-            <div class="ach-ico">🏆</div>
+            <div>
+              <div class="ach-name">SQL / Business Analyst Certificate</div>
+              <div class="ach-sub">Signature Business Solutions</div>
+            </div>
+          </div>
+          <div class="ach-item">
             <div>
               <div class="ach-name">Top Achiever Award 2024</div>
               <div class="ach-sub">IIE MSA</div>
             </div>
           </div>
           <div class="ach-item">
-            <div class="ach-ico">🏆</div>
             <div>
               <div class="ach-name">Top Achiever Award 2023</div>
               <div class="ach-sub">IIE MSA</div>
             </div>
           </div>
           <div class="ach-item">
-            <div class="ach-ico">📜</div>
             <div>
-              <div class="ach-name">SQL / Business Analyst Certificate</div>
-              <div class="ach-sub">Signature Business Solutions</div>
+              <div class="ach-name">Golden Key International Honour Society</div>
+              <div class="ach-sub">Member</div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- CV -->
-      <div class="card c-cv" id="resume">
-        <div class="ci">
-          <div class="slabel">Resume</div>
-          <a href="_documents/BurhanMohamed_CV.pdf" target="_blank" class="cv-view">
-            <span>📄</span>
-            <small>View CV</small>
-          </a>
-          <a href="_documents/BurhanMohamed_CV.pdf" download="BurhanMohamed_CV.pdf" class="cv-dl">Download CV</a>
         </div>
       </div>
 
@@ -1080,7 +1236,6 @@
 
             <a href="mailto:abmburhan012@gmail.com" class="clink">
               <div class="clink-ico">
-                <!-- Email icon -->
                 <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"
                   stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
